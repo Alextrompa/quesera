@@ -1,5 +1,5 @@
 services:
     web:
-        build: .
+        image: quesera
         ports:
             - "80:80"

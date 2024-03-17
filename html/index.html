@@ -3,40 +3,72 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Countdown Timer</title>
+	<title>Countdown</title>
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 	<style>
 		/* Customize styles here if needed */
-		.countdown-box {
-			border: 2px solid #e2e8f0;
-			border-radius: 8px;
-			padding: 12px;
-			min-width: 60px;
-			animation: pulseBackground 1.5s infinite alternate;
+		body {
+			animation: pulseBackgroundBody 20s infinite;
+			background-color: #87CEEB; /* Inicialmente azul cielo */
 		}
 
-		@keyframes pulseBackground {
+		@keyframes pulseBackgroundBody {
 			0% {
-				background-color: #f7fafc;
+				background-color: #87CEEB; /* Azul cielo */
+			}
+			25% {
+				background-color: #FFB6C1; /* Rosa claro */
+			}
+			50% {
+				background-color: #90EE90; /* Verde claro */
+			}
+			75% {
+				background-color: #8A2BE2; /* Lila fuerte */
 			}
 			100% {
-				background-color: #cbd5e0;
+				background-color: #87CEEB; /* Vuelve a azul cielo */
 			}
+		}
+
+		.countdown-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.countdown-item {
+			font-size: 3rem;
+			margin: 0 1rem;
+			padding: 0.5rem 1rem;
+			border-radius: 0.5rem;
+			background-color: #ffffff; /* Blanco */
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		.countdown-label {
+			font-size: 1rem;
+			color: #4a5568; /* Gris oscuro */
 		}
 	</style>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-	<div class="text-center">
-		<h1 class="text-3xl font-bold mb-4">Cuenta atrás. ¿Qué será?</h1>
-		<div class="grid grid-cols-4 gap-4">
-			<div id="days" class="countdown-box text-2xl font-bold"></div>
-			<div class="text-2xl font-bold">d</div>
-			<div id="hours" class="countdown-box text-2xl font-bold"></div>
-			<div class="text-2xl font-bold">h</div>
-			<div id="minutes" class="countdown-box text-2xl font-bold"></div>
-			<div class="text-2xl font-bold">m</div>
-			<div id="seconds" class="countdown-box text-2xl font-bold"></div>
-			<div class="text-2xl font-bold">s</div>
+<body>
+	<div class="countdown-container">
+		<div class="countdown-item">
+			<span id="days">00</span>
+			<div class="countdown-label">Días</div>
+		</div>
+		<div class="countdown-item">
+			<span id="hours">00</span>
+			<div class="countdown-label">Horas</div>
+		</div>
+		<div class="countdown-item">
+			<span id="minutes">00</span>
+			<div class="countdown-label">Minutos</div>
+		</div>
+		<div class="countdown-item">
+			<span id="seconds">00</span>
+			<div class="countdown-label">Segundos</div>
 		</div>
 	</div>
 
@@ -44,29 +76,30 @@
 		// Set the date we're counting down to
 		const countDownDate = new Date("March 17, 2024 18:00:00").getTime();
 
-		// Update the countdown every second
+		// Update the countdown every 1 second
 		const x = setInterval(function() {
 
 			// Get the current date and time
 			const now = new Date().getTime();
-
+			
 			// Calculate the distance between now and the countdown date
 			const distance = countDownDate - now;
-
-			// Calculate days, hours, minutes, and seconds
+			
+			// Calculate days, hours, minutes and seconds
 			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 			const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+			
 			// Display the countdown
-			document.getElementById("days").innerHTML = days;
-			document.getElementById("hours").innerHTML = hours;
-			document.getElementById("minutes").innerHTML = minutes;
-			document.getElementById("seconds").innerHTML = seconds;
-
-			// If the countdown is over, display a message
+			document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+			document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+			document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+			document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+			
+			// If the countdown is over, redirect to result.html
 			if (distance < 0) {
+				clearInterval(x);
 				window.location.href = "resultado.html";
 			}
 		}, 1000);
