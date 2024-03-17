@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Countdown Timer</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<style>
+		/* Customize styles here if needed */
+		.countdown-box {
+			border: 2px solid #e2e8f0;
+			border-radius: 8px;
+			padding: 12px;
+			min-width: 60px;
+			animation: pulseBackground 1.5s infinite alternate;
+		}
+
+		@keyframes pulseBackground {
+			0% {
+				background-color: #f7fafc;
+			}
+			100% {
+				background-color: #cbd5e0;
+			}
+		}
+	</style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+	<div class="text-center">
+		<h1 class="text-3xl font-bold mb-4">Countdown Timer</h1>
+		<div class="grid grid-cols-4 gap-4">
+			<div id="days" class="countdown-box text-2xl font-bold"></div>
+			<div class="text-2xl font-bold">d</div>
+			<div id="hours" class="countdown-box text-2xl font-bold"></div>
+			<div class="text-2xl font-bold">h</div>
+			<div id="minutes" class="countdown-box text-2xl font-bold"></div>
+			<div class="text-2xl font-bold">m</div>
+			<div id="seconds" class="countdown-box text-2xl font-bold"></div>
+			<div class="text-2xl font-bold">s</div>
+		</div>
+	</div>
+
+	<script>
+		// Set the date we're counting down to
+		const countDownDate = new Date("March 17, 2024 18:00:00").getTime();
+
+		// Update the countdown every second
+		const x = setInterval(function() {
+
+			// Get the current date and time
+			const now = new Date().getTime();
+
+			// Calculate the distance between now and the countdown date
+			const distance = countDownDate - now;
+
+			// Calculate days, hours, minutes, and seconds
+			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			// Display the countdown
+			document.getElementById("days").innerHTML = days;
+			document.getElementById("hours").innerHTML = hours;
+			document.getElementById("minutes").innerHTML = minutes;
+			document.getElementById("seconds").innerHTML = seconds;
+
+			// If the countdown is over, display a message
+			if (distance < 0) {
+				window.location.href = "esunchico.html";
+			}
+		}, 1000);
+	</script>
+</body>
+</html>

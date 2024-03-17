@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Es una niña</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Customize styles here if needed */
+    body {
+      background-color: #f48fb1; /* Rosa claro */
+      animation: pulseBackgroundBody 10s infinite;
+    }
+
+    @keyframes pulseBackgroundBody {
+      0%, 100% {
+        background-color: #f48fb1; /* Rosa claro */
+      }
+      20% {
+        background-color: #ba68c8; /* Lila */
+      }
+      40% {
+        background-color: #ffab40; /* Naranja */
+      }
+      60% {
+        background-color: #90caf9; /* Azul claro */
+      }
+      80% {
+        background-color: #66bb6a; /* Verde claro */
+      }
+      90% {
+        background-color: #ffeb3b; /* Amarillo */
+      }
+      95% {
+        background-color: #ff8a80; /* Rojo claro */
+      }
+    }
+
+    .rounded-oval {
+      border-radius: 9999px; /* Crea una forma ovalada */
+    }
+
+    .pulseBackgroundBox {
+      animation: pulseBackgroundBox 1.5s infinite alternate;
+    }
+
+    @keyframes pulseBackgroundBox {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+  <div class="text-center relative">
+    <div class="bg-white rounded-oval p-8 shadow-xl pulseBackgroundBox relative inline-block">
+      <h1 class="text-6xl font-extrabold text-pink-600 font-serif">Es una niña</h1>
+    </div>
+  </div>
+</body>
+</html>
